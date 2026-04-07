@@ -1,17 +1,7 @@
 import css from './Input.module.css'
 
-export default function Input({input, textarea = false, alterarInput, tamanho = 'normal', label, type = "text", placeholder, required = false, maxLength, minLength, soNumeros = false
+export default function Input({input, textarea = false, alterarInput, tamanho = 'normal', label, type = "text", placeholder, required = false, maxLength, minLength, 
 }) {
-
-    function handleChange(e) {
-        let valor = e.target.value
-
-        if (soNumeros) {
-            valor = valor.replace(/\D/g, '')
-        }
-
-        alterarInput(valor)
-    }
 
     return (
         <div className={css.inputGroup}>
@@ -20,7 +10,7 @@ export default function Input({input, textarea = false, alterarInput, tamanho = 
             {textarea ? (
                 <textarea
                     className={css.Big}
-                    onChange={handleChange}
+                    onChange={alterarInput}
                     value={input}
                     required={required}
                     placeholder={placeholder}
@@ -30,7 +20,7 @@ export default function Input({input, textarea = false, alterarInput, tamanho = 
                 <input
                     className={css[tamanho]}
                     type={type}
-                    onChange={handleChange}
+                    onChange={alterarInput}
                     value={input}
                     required={required}
                     placeholder={placeholder}
